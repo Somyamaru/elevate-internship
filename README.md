@@ -1,1 +1,0 @@
-I created an external JavaScript file, selected DOM elements, handled button click events, dynamically updated content and styles, toggled CSS classes for better UI control, added comments for clarity, used console logs for debugging, and tested the output across multiple browsers.
