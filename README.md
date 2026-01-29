@@ -1,1 +1,3 @@
-I created an external JavaScript file, selected DOM elements, handled button click events, dynamically updated content and styles, toggled CSS classes for better UI control, added comments for clarity, used console logs for debugging, and tested the output across multiple browsers.
+    This is a JavaScript-based Todo application where tasks are stored in an array as state. 
+    The UI is dynamically rendered using document.createElement for safe DOM manipulation.
+    It supports task creation, completion toggling using CSS classes, deletion using event delegation, input validation, and real-time UI synchronization with state
