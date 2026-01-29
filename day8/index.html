@@ -7,18 +7,39 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="app">
-      <h2>Todo List App</h2>
-      <div class="input-area">
-        <input type="text" id="taskInput" placeholder="Enter your task..." />
-        <button id="addBtn">Add</button>
-      </div>
+    <form id="form">
+      <h2>Registration Form</h2>
 
-      <ul id="taskList"></ul>
-    </div>
+      <div class="formgroup">
+        <label >Name</label>
+        <input type="text"  id="name">
+        <small class="error-msg"></small>
+      </div>
+      <div class="formgroup">
+        <label >Email</label>
+        <input type="text" id="email">
+        <small class="error-msg"></small>
+      </div>
+      <div class="formgroup">
+        <label >Password</label>
+        <input type="password"  id="password">
+        <small class="error-msg"></small>
+      </div>
+      <div class="formgroup">
+        <label >Confirm Password</label>
+        <input type="password"  id="confirmPassword">
+        <small class="error-msg"></small>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- I disabled browser validation and implemented custom JavaScript validation.
+Each input has its own validation function using conditions and regex.
+Errors are displayed below inputs dynamically for better UX.
+I used reusable functions to avoid repetition and added real-time validation using keyup events.
+Form submission is prevented until all fields are valid. -->
 
     <script src="script.js"></script>
 
-    <!-- This is a JavaScript-based Todo application where tasks are stored in an array as state. The UI is dynamically rendered using document.createElement for safe DOM manipulation. It supports task creation, completion toggling using CSS classes, deletion using event delegation, input validation, and real-time UI synchronization with state -->
   </body>
 </html>
