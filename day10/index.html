@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day10</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 35px;
+      border-radius: 18px;
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #0b74da;
+      font-size: 1.9rem;
+      font-weight: 600;
+    }
+
+    #user {
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.7;
+      min-height: 120px;
+      margin-bottom: 25px;
+      padding: 10px;
+      background: #f8f9fb;
+      border-radius: 10px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    #user h3 {
+      color: #007bff;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    #user p {
+      color: #444;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    button {
+      background: #4facfe;
+      color: #fff;
+      border: none;
+      padding: 12px 26px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #007bff;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 25px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      button {
+        width: 100%;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🧑 Get Random User</h1>
+    <div id="user">
+      <p>"Discover a new person with every click!"</p>
+      <p>Click below to reveal your next random friend ⬇️</p>
+    </div>
+    <button id="userbtn">Load User Info</button>
+  </div>
+
+  <script>
+    //  Step 1: Select elements from the HTML
+    const userText = document.getElementById('user');
+    const userBtn = document.getElementById('userbtn');
+
+    //  Step 2: Define an async function to fetch random user
+    async function getUser() {
+      try {
+        //  Show loading text while fetching
+        userText.innerHTML = "<p>Loading user info... 🔄</p>";
+
+        // Step 3: Use Fetch API to call the random user API
+        const response = await fetch('https://randomuser.me/api/');
+        const data = await response.json();
+
+        //  Step 4: Extract useful user details
+        const user = data.results[0];
+        const name = `${user.name.first} ${user.name.last}`;
+        const city = user.location.city;
+        const address = `${user.location.street.number} ${user.location.street.name}`;
+        const age = user.dob.age;
+        const pincode = user.location.postcode;
+
+        //  Step 5: Display user info on the page
+        userText.innerHTML = `
+          <h3>👤 Name: ${name}</h3>
+          <p>🏙️ City: ${city}</p>
+          <p>🏠 Address: ${address}</p>          <p>🎂 Age: ${age}</p>
+          <p>📮 Pincode: ${pincode}</p>
+        `;
+      } catch (error) {
+        // ❌ Handle errors
+        userText.textContent = "Oops! Something went wrong. Try again later 😢";
+        console.error("Error fetching user:", error);
+      }
+    }
+
+    //  Step 6: Add event listener to button
+    userBtn.addEventListener('click', getUser);
+
+    //  Step 7: Fetch a random user automatically when page loads
+    getUser();
+  </script>
+</body>
+
+</html>
